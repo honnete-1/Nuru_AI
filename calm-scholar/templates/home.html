@@ -1,0 +1,107 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}Calm Scholar · Study together with Nuru{% endblock %}
+{% block body %}
+<a class="skip-link" href="#main">Skip to content</a>
+<nav class="site-nav" id="site-nav" aria-label="Main">
+  <a class="brand" href="/">{% include 'partials/mark.html' %}<span>calm <b>scholar</b></span></a>
+  <div class="links">
+    <a href="#how">How it helps</a><a href="#nuru">Meet Nuru</a><a href="#results">After results</a><a href="#honest">Honest by design</a>
+    {% if user.is_authenticated %}<a class="btn btn-primary btn-sm" href="/app/">Start studying with Nuru <span aria-hidden="true">→</span></a>
+    {% else %}<a href="/accounts/login/">Log in</a><a class="btn btn-primary btn-sm" href="/accounts/register/">Create your account</a>{% endif %}
+  </div>
+</nav>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">An AI study buddy for university students</span>
+      <h1 id="hero-title">Organize, learn and revise, and <em>feel supported</em>, with Nuru studying alongside you.</h1>
+      <p class="lede">Nuru sits beside you through coursework, revision, achievements and frustrations. Break an assignment into steps, understand a difficult idea, practise before an exam, or talk through a result, all in one calm place.</p>
+      <div class="actions">
+        {% if user.is_authenticated %}<a class="btn btn-lamp btn-lg" href="/app/">Start studying with Nuru <span aria-hidden="true">→</span></a>
+        {% else %}<a class="btn btn-lamp btn-lg" href="/accounts/register/">Create your account <span aria-hidden="true">→</span></a>
+        <form action="/accounts/demo/" method="post">{% csrf_token %}<button class="btn btn-ghost btn-lg">Try a sample space</button></form>{% endif %}
+      </div>
+      <div class="reassure"><span><i class="lamp-dot"></i>Grades and check-ins are always optional</span><span><i class="lamp-dot" style="background:var(--sage)"></i>Clearly labelled AI</span></div>
+    </div>
+    <div class="hero-scene reveal">
+      {% include 'partials/scene.html' with scene_id='Hero' scene_label='A student and Nuru, a paper-lantern study buddy, sitting side by side at a shared desk' %}
+      <div class="hero-bubble" aria-hidden="true"><b>Hello, I'm Nuru.</b>Shall we pick one small step to begin with?</div>
+      <div class="hero-tab" aria-hidden="true"><span class="check">✓</span><span><b>Read the brief</b><br><span class="muted small">10 minutes · a gentle start</span></span></div>
+    </div>
+  </section>
+
+  <section class="section" id="how" aria-labelledby="how-title">
+    <div class="section-head reveal"><span class="eyebrow">Three ways Nuru helps</span><h2 id="how-title">Get help straight away, <em>without learning a system first.</em></h2>
+      <p>Open Calm Scholar and you're asked one question: what would help you today? Every answer leads to real work, done side by side in Study Together.</p></div>
+    <div class="corners">
+      <article class="paper fold corner reveal"><span class="num">organize</span><h3>Assignments &amp; study plan</h3><p>Track deadlines, break an assignment into small steps, and approve a plan that fits the hours you actually have. If the work doesn't fit, you'll see it plainly, with options.</p></article>
+      <article class="paper fold corner reveal"><span class="num">learn</span><h3>Understand something</h3><p>Explanations with examples, hints and worked problems. Upload your notes and answers cite the exact passage they came from.</p></article>
+      <article class="paper fold corner reveal"><span class="num">revise</span><h3>Revise with Nuru</h3><p>You try a question first. Then feedback, a hint or an example, a related question, and a summary with a sensible time to review again.</p></article>
+      <article class="paper fold corner reveal"><span class="num">support</span><h3>Highs and lows</h3><p>When a result comes back or things feel heavy, Nuru asks how you feel first, then lets you choose: talk, pause, look at feedback, or pick one next step.</p></article>
+      <article class="paper fold corner wide reveal"><span class="num">study together</span><h3>Your work in the middle, Nuru beside you</h3><p>Open an assignment, choose one step, and work on it in a shared notebook. Press <b>Help me here</b> whenever you're stuck: Nuru sees only what you're working on, and says so. Start a focus session, mark the step done, and pick up exactly where you stopped next time.</p></article>
+      <article class="paper fold corner reveal"><span class="num">your space</span><h3>Make it yours</h3><p>Choose how your seat looks, Nuru's light, the view from the window and optional ambient sound that never starts by itself.</p></article>
+      <article class="paper fold corner reveal"><span class="num">progress</span><h3>Small, honest milestones</h3><p>Things for your shared desk, each tied to something you did. No streaks, no leaderboards, and nothing is taken away after a break.</p></article>
+    </div>
+  </section>
+
+  <section class="meet" id="nuru" aria-labelledby="nuru-title">
+    <div class="meet-stage reveal" aria-live="polite">
+      {% include 'partials/nuru.html' with nuru_id='Meet' nuru_label='Nuru the lantern' %}
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">Meet your study buddy</span>
+      <h2 id="nuru-title" style="font-size:clamp(30px,3.6vw,46px);font-weight:450">Nuru is a small lantern <em>that helps you see the next step.</em></h2>
+      <p class="muted">Nuru's posture and glow change with what it's doing. These are visual cues, not claims about feelings.</p>
+      <div class="state-row" role="group" aria-label="Preview Nuru's states">
+        <button class="chip" data-nuru="welcoming" aria-pressed="true">Welcoming</button><button class="chip" data-nuru="listening" aria-pressed="false">Listening</button><button class="chip" data-nuru="thinking" aria-pressed="false">Thinking</button><button class="chip" data-nuru="explaining" aria-pressed="false">Explaining</button><button class="chip" data-nuru="studying" aria-pressed="false">Quietly studying</button><button class="chip" data-nuru="celebrating" aria-pressed="false">Celebrating</button><button class="chip" data-nuru="supporting" aria-pressed="false">Gently supporting</button>
+      </div>
+      <ul class="promise-list">
+        <li>Honest about being an AI. It never pretends to be a person or to have feelings.</li>
+        <li>Asks one useful question at a time and lets you choose where to go next.</li>
+        <li>Prefers hints and your own reasoning over finished answers. It won't write graded work for you.</li>
+        <li>Points you towards classmates, tutors, lecturers and friends. It never guilts you for leaving.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="results" aria-labelledby="results-title">
+    <div class="results-story">
+      <div class="section-head reveal" style="margin-bottom:0"><span class="eyebrow">When results come back</span>
+        <h2 id="results-title">A 92 can disappoint. A 55 can be a turning point. <em>So Nuru asks first.</em></h2>
+        <p>Grades work with percentages, points or written grades. The first response follows how <b>you</b> say you feel, never the number. Then you choose: talk, take a pause, go through the feedback, prepare a question for your lecturer, or plan one step. Grades never feed rewards, rankings or anything public.</p>
+      </div>
+      <div class="paper feel-demo reveal">
+        <span class="jtab amber">Try it: how do you feel about it?</span>
+        <div class="chips" style="margin-top:16px" role="group" aria-label="Choose a feeling">
+          {% for o in openings %}<button class="chip" data-feel="{{ o.key }}" data-msg="{{ o.message }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ o.label }}</button>{% endfor %}
+        </div>
+        <div class="bubble" id="feel-bubble" aria-live="polite">{{ openings.0.message }}</div>
+        <p class="tiny muted" style="margin:12px 0 0">These are the app's real opening words for each feeling. They're written in advance, not generated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="honest" aria-labelledby="honest-title" style="padding-top:0">
+    <div class="section-head reveal"><span class="eyebrow">Honest by design</span><h2 id="honest-title">Clear about what's AI, <em>and what's yours.</em></h2></div>
+    <div class="honest">
+      <div class="paper reveal"><span class="ai-badge {% if live_ai %}live{% else %}demo{% endif %}">{% if live_ai %}Live AI configured{% else %}Demo mode: scripted responses{% endif %}</span><h3 style="margin-top:14px">Every reply is labelled</h3><p class="muted">Live replies come from the AI provider your installation configured. Without a key, scripted demo replies are labelled as demo. If a live request fails, the fallback is labelled too.</p></div>
+      <div class="paper reveal"><span class="jtab sage">Your choice</span><h3 style="margin-top:14px">Nothing shared by surprise</h3><p class="muted">When you ask for help, you see exactly what Nuru will be shown. Saved chat history, learning memory and workload sharing are separate choices, and grades are only shared when you tick them.</p></div>
+      <div class="paper reveal"><span class="jtab">Your decision</span><h3 style="margin-top:14px">Plans that fit your week</h3><p class="muted">Plans respect your available hours and breaks, and keep what you've finished. Suggestions stay suggestions until you approve them, and deadlines are never moved for you.</p></div>
+    </div>
+  </section>
+
+  <section class="cta-band reveal" aria-labelledby="cta-title">
+    <div><h2 id="cta-title">Pull up a chair. <em>Start with one small thing.</em></h2>
+      <p>Setup takes about a minute: a name, how your seat looks, one course if you like, and how much time you usually have.</p>
+      <div class="row" style="margin-top:22px">{% if user.is_authenticated %}<a class="btn btn-lamp btn-lg" href="/app/">Start studying with Nuru →</a>{% else %}<a class="btn btn-lamp btn-lg" href="/accounts/register/">Create your account →</a><a class="btn btn-ghost btn-lg" style="color:#f3ecdf;border-color:rgba(255,255,255,.3)" href="/accounts/login/">Log in</a>{% endif %}</div>
+    </div>
+    {% include 'partials/nuru.html' with nuru_id='Cta' nuru_state='welcoming' %}
+  </section>
+</main>
+<footer class="site-foot">
+  <span>calm scholar. An AI study buddy, not a counselling or emergency service.</span>
+  <span>For urgent support, please contact local emergency services or someone you trust.</span>
+</footer>
+<script src="{% static 'js/landing.js' %}" defer></script>
+{% endblock %}

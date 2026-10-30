@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+*.sqlite3*
+.pytest_cache/
+staticfiles/
+.local-secret
+private_uploads/
+node_modules/
+test-artifacts/

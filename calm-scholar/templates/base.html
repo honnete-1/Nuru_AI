@@ -1,0 +1,15 @@
+{% load static %}<!doctype html>
+<html lang="en" data-motion="{{ motion|default:'system' }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fbf7ef">
+<meta name="description" content="Calm Scholar: a welcoming place to learn, find your footing, and make progress at your own pace.">
+<title>{% block title %}Calm Scholar · A study sanctuary{% endblock %}</title>
+<link rel="icon" href="{% static 'images/mark.svg' %}" type="image/svg+xml">
+<link rel="preload" href="{% static 'fonts/fraunces-latin-wght-normal.woff2' %}" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="{% static 'fonts/inter-latin-wght-normal.woff2' %}" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body{% block bodyattrs %}{% endblock %}>{% block body %}{% endblock %}</body>
+</html>

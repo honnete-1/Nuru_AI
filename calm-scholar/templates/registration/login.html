@@ -1,0 +1,28 @@
+{% extends 'base.html' %}{% load static %}{% block title %}Log in · Calm Scholar{% endblock %}
+{% block body %}
+<main class="auth">
+  <section class="auth-art" aria-hidden="true">
+    <a class="brand" href="/" tabindex="-1">{% include 'partials/mark.html' %}<span>calm <b>scholar</b></span></a>
+    {% include 'partials/scene.html' with scene_id='Auth' %}
+    <div class="quote"><h1>Welcome back. <em>The lamp's on.</em></h1><p>Nuru kept your place. Pick up where we stopped.</p></div>
+  </section>
+  <section class="auth-panel">
+    <div class="auth-card">
+      <a class="brand" href="/" style="margin-bottom:28px">{% include 'partials/mark.html' %}<span>calm <b>scholar</b></span></a>
+      <span class="eyebrow">Your AI study buddy</span>
+      <h2>Log in</h2>
+      <form method="post" novalidate>{% csrf_token %}
+        {% if form.non_field_errors %}<ul class="errorlist">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        <label for="id_username">Username{{ form.username }}</label>
+        <label for="id_password">Password{{ form.password }}</label>
+        <input type="hidden" name="next" value="{{ next }}">
+        <button class="btn btn-primary btn-lg">Start studying with Nuru →</button>
+      </form>
+      <p class="small muted">New here? <a href="/accounts/register/">Create your account</a></p>
+      <form action="/accounts/demo/" method="post">{% csrf_token %}<button class="btn btn-ghost">Try a sample space</button></form>
+      <p class="tiny muted" style="margin-top:22px">Forgotten password? Ask the person who runs this installation. This version has no email reset.</p>
+    </div>
+  </section>
+</main>
+<script src="{% static 'js/landing.js' %}" defer></script>
+{% endblock %}

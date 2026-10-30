@@ -1,0 +1,5 @@
+-r requirements.txt
+pytest==9.1.1
+pytest-django==4.14.0
+# Optional, for tools/browser_check.py (then run: python -m playwright install chromium)
+# playwright>=1.48

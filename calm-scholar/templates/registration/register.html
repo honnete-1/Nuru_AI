@@ -1,0 +1,26 @@
+{% extends 'base.html' %}{% load static %}{% block title %}Create your account · Calm Scholar{% endblock %}
+{% block body %}
+<main class="auth">
+  <section class="auth-art" aria-hidden="true">
+    <a class="brand" href="/" tabindex="-1">{% include 'partials/mark.html' %}<span>calm <b>scholar</b></span></a>
+    {% include 'partials/scene.html' with scene_id='Auth' %}
+    <div class="quote"><h1>A fresh page. <em>At your pace.</em></h1><p>In a moment you'll meet Nuru, your AI study buddy.</p></div>
+  </section>
+  <section class="auth-panel">
+    <div class="auth-card">
+      <a class="brand" href="/" style="margin-bottom:28px">{% include 'partials/mark.html' %}<span>calm <b>scholar</b></span></a>
+      <span class="eyebrow">One manageable step</span>
+      <h2>Create your account</h2>
+      <form method="post" novalidate>{% csrf_token %}
+        {% if form.non_field_errors %}<ul class="errorlist">{% for e in form.non_field_errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}
+        <label for="display_name">What should Nuru call you?<input id="display_name" name="display_name" maxlength="60" placeholder="A first name or nickname" autocomplete="given-name" value="{{ request.POST.display_name|default:'' }}"></label>
+        {% for field in form %}<label for="{{ field.id_for_label }}">{{ field.label }}{{ field }}{% if field.errors %}<ul class="errorlist">{% for e in field.errors %}<li>{{ e }}</li>{% endfor %}</ul>{% endif %}{% if field.help_text %}<span class="help-text">{{ field.help_text|safe }}</span>{% endif %}</label>{% endfor %}
+        <p class="privacy-note">This pilot is for adult students. Grades and check-ins are optional, chat history is off by default, and you can export or delete everything. Whoever runs this installation can technically access its database.</p>
+        <button class="btn btn-primary btn-lg">Create my account →</button>
+      </form>
+      <p class="small muted">Already have an account? <a href="/accounts/login/">Log in</a></p>
+    </div>
+  </section>
+</main>
+<script src="{% static 'js/landing.js' %}" defer></script>
+{% endblock %}

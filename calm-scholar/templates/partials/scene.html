@@ -1,0 +1,122 @@
+{% comment %}
+Study Together scene: the student's avatar and Nuru side by side at a shared desk in a
+university study room. Original, code-native SVG. Purely illustrative (role=img): every
+action lives in real, labelled HTML controls, never on furniture. Avatar options are
+data attributes (skin, hair, outfit); unlocked keepsakes appear via has-<key> classes.
+{% endcomment %}
+<svg class="scene-svg" data-theme="day" data-scenery="garden" data-lamp="warm" data-skin="s2" data-hair="short" data-outfit="lavender" data-activity="idle" viewBox="0 0 1200 460" preserveAspectRatio="xMidYMax slice" role="img" aria-label="{{ scene_label|default:'You and Nuru studying side by side at a shared desk' }}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="scSky{{ scene_id }}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="sc-sky-top"/><stop offset="1" class="sc-sky-bottom"/></linearGradient>
+    <radialGradient id="scLamp{{ scene_id }}" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(905 300) scale(300 190)"><stop offset="0" stop-color="#ffd98e" stop-opacity=".7"/><stop offset=".4" stop-color="#ffc56b" stop-opacity=".22"/><stop offset="1" stop-color="#ffc56b" stop-opacity="0"/></radialGradient>
+    <radialGradient id="scWin{{ scene_id }}" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(600 200) scale(460 300)"><stop offset="0" stop-color="#fff8e6" stop-opacity=".5"/><stop offset="1" stop-color="#fff8e6" stop-opacity="0"/></radialGradient>
+    <clipPath id="scWinClip{{ scene_id }}"><path d="M440 300V170a160 160 0 0 1 320 0v130Z"/></clipPath>
+  </defs>
+
+  <!-- wall, window and scenery -->
+  <rect class="sc-wall" x="-300" y="-200" width="1800" height="900"/>
+  <path class="sc-wainscot" d="M-300 300h1800v200H-300Z"/>
+  <path class="sc-rail" d="M-300 300h1800"/>
+  <g clip-path="url(#scWinClip{{ scene_id }})">
+    <rect x="430" y="0" width="340" height="310" fill="url(#scSky{{ scene_id }})"/>
+    <g class="sc-stars"><circle cx="480" cy="70" r="1.6"/><circle cx="530" cy="40" r="1.2"/><circle cx="650" cy="60" r="1.5"/><circle cx="700" cy="110" r="1.1"/><circle cx="560" cy="120" r="1"/></g>
+    <circle class="sc-sun" cx="690" cy="96" r="24"/>
+    <path class="sc-moon" d="M690 70a28 28 0 1 0 22 44a22 22 0 1 1-22-44Z"/>
+    <g class="sc-view sc-view-garden">
+      <path class="sc-hill-far" d="M430 240q80-50 170-18t170-24v120H430Z"/>
+      <path class="sc-hill-near" d="M430 268q90-40 180-8t160-14v70H430Z"/>
+      <g class="sc-tree"><path d="M500 252v-34"/><circle cx="500" cy="208" r="22"/><circle cx="486" cy="222" r="15"/></g>
+      <g class="sc-tree"><path d="M705 256v-28"/><circle cx="705" cy="220" r="18"/></g>
+      <path class="sc-campus" d="M560 246h80v-40l-40-22-40 22Z"/><path class="sc-campus-win" d="M584 246v-18h12v18M604 246v-18h12v18"/>
+    </g>
+    <g class="sc-view sc-view-city">
+      <path class="sc-city-far" d="M430 240h30v-30h24v18h26v-46h30v34h18v-22h30v30h26v-56h28v44h22v-24h36v120H430Z"/>
+      <path class="sc-city-near" d="M430 270h44v-34h38v26h40v-40h50v28h28v-16h40v32h30v60H430Z"/>
+      <g class="sc-city-lights"><rect x="452" y="250" width="6" height="7"/><rect x="500" y="240" width="6" height="7"/><rect x="560" y="236" width="6" height="7"/><rect x="574" y="250" width="6" height="7"/><rect x="640" y="252" width="6" height="7"/><rect x="700" y="258" width="6" height="7"/><rect x="618" y="196" width="5" height="6"/><rect x="684" y="200" width="5" height="6"/></g>
+    </g>
+    <g class="sc-view sc-view-rain">
+      <path class="sc-hill-far sc-rainy" d="M430 250q80-36 170-12t170-20v110H430Z"/>
+      <g class="sc-drops"><path d="M460 30l-9 24M500 70l-9 24M540 20l-9 24M580 80l-9 24M620 30l-9 24M660 90l-9 24M700 40l-9 24M740 100l-9 24M470 150l-9 24M520 190l-9 24M570 150l-9 24M620 200l-9 24M670 160l-9 24M720 210l-9 24"/></g>
+    </g>
+  </g>
+  <path class="sc-window-frame" d="M440 300V170a160 160 0 0 1 320 0v130Z"/>
+  <path class="sc-mullion" d="M600 12v288M440 190h320"/>
+  <path class="sc-sill" d="M424 298h352v12H424Z"/>
+  <rect class="sc-window-light" x="-300" y="-200" width="1800" height="900" fill="url(#scWin{{ scene_id }})"/>
+
+  <!-- bookshelves: a university study room -->
+  <g class="sc-shelf">
+    <path class="sc-case" d="M40 30h220v300H40ZM940 30h220v300H940Z"/>
+    <path class="sc-case-inner" d="M54 44h192v272H54ZM954 44h192v272H954Z"/>
+    <path class="sc-board" d="M54 130h192M54 222h192M954 130h192M954 222h192"/>
+    <g class="sc-books">
+      <rect class="b1" x="62" y="70" width="18" height="60"/><rect class="b2" x="82" y="80" width="14" height="50"/><rect class="b3" x="98" y="64" width="20" height="66"/><rect class="b4" x="120" y="76" width="16" height="54"/><rect class="b5" x="138" y="70" width="22" height="60"/><rect class="b1" x="190" y="84" width="16" height="46"/><rect class="b3" x="208" y="72" width="18" height="58"/>
+      <rect class="b2" x="62" y="160" width="20" height="62"/><rect class="b5" x="84" y="168" width="16" height="54"/><rect class="b1" x="102" y="156" width="18" height="66"/><rect class="b4" x="150" y="166" width="18" height="56"/><rect class="b3" x="170" y="160" width="22" height="62"/><rect class="b2" x="212" y="170" width="16" height="52"/>
+      <rect class="b3" x="62" y="252" width="22" height="64"/><rect class="b1" x="86" y="262" width="16" height="54"/><rect class="b5" x="130" y="256" width="20" height="60"/><rect class="b2" x="152" y="266" width="14" height="50"/><rect class="b4" x="190" y="254" width="24" height="62"/>
+      <rect class="b4" x="962" y="74" width="18" height="56"/><rect class="b1" x="982" y="66" width="20" height="64"/><rect class="b5" x="1004" y="80" width="14" height="50"/><rect class="b3" x="1050" y="70" width="20" height="60"/><rect class="b2" x="1072" y="76" width="16" height="54"/><rect class="b1" x="1110" y="68" width="22" height="62"/>
+      <rect class="b3" x="962" y="164" width="16" height="58"/><rect class="b2" x="980" y="158" width="22" height="64"/><rect class="b1" x="1026" y="168" width="16" height="54"/><rect class="b5" x="1044" y="160" width="20" height="62"/><rect class="b4" x="1100" y="166" width="18" height="56"/><rect class="b3" x="1120" y="156" width="20" height="66"/>
+      <rect class="b2" x="962" y="256" width="18" height="60"/><rect class="b4" x="982" y="262" width="16" height="54"/><rect class="b1" x="1000" y="250" width="22" height="66"/><rect class="b3" x="1060" y="258" width="18" height="58"/><rect class="b5" x="1080" y="264" width="16" height="52"/>
+    </g>
+  </g>
+
+  <!-- wall keepsakes -->
+  <g class="deco deco-star_chart" transform="translate(300 60) scale(1.3)"><rect x="8" y="6" width="44" height="46" fill="#2f2b4a" stroke="#b98b3e" stroke-width="3"/><g fill="#ffe4a3"><circle cx="18" cy="18" r="2"/><circle cx="32" cy="24" r="2"/><circle cx="42" cy="16" r="2"/><circle cx="26" cy="40" r="2"/></g><path d="M18 18l14 6 10-8M32 24l-6 16" stroke="#ffe4a3" stroke-width="1" fill="none" opacity=".6"/></g>
+  <g class="deco deco-brass_clock" transform="translate(822 52) scale(1.1)"><circle cx="30" cy="28" r="18" fill="#f8ecd2" stroke="#b98b3e" stroke-width="4"/><path d="M30 28V16M30 28l8 5" stroke="#6d4a33" stroke-width="2.5" stroke-linecap="round"/></g>
+  <g class="deco deco-paper_garland" transform="translate(452 10) scale(5.2 2.4)"><path d="M2 10q28 20 56 0" fill="none" stroke="#6d4a33" stroke-width=".5"/><path d="M10 16l3 6 3-5-3-3Z" fill="#E7B56B"/><path d="M26 21l3 6 3-5-3-3Z" fill="#B8A4D4"/><path d="M42 16l3 6 3-5-3-3Z" fill="#A8BFA3"/></g>
+  <g class="deco deco-trailing_fern" transform="translate(268 6) scale(1.2)"><path d="M20 8h24l-4 12H24Z" fill="#c6714f"/><path d="M32 18q-20 8-22 34M32 18q4 20 0 36M32 18q20 8 22 34" fill="none" stroke="#5f7f5b" stroke-width="2.5"/><g fill="#7f9e78"><ellipse cx="14" cy="34" rx="6" ry="3"/><ellipse cx="50" cy="34" rx="6" ry="3"/><ellipse cx="32" cy="44" rx="3" ry="6"/></g></g>
+
+  <!-- chairs -->
+  <path class="sc-chair" d="M400 340V236q0-24 24-24h122q24 0 24 24v104Z"/>
+  <path class="sc-chair" d="M640 340V236q0-24 24-24h112q24 0 24 24v104Z"/>
+  <path class="sc-chair-stitch" d="M414 236q0-10 10-10h122q10 0 10 10M654 236q0-10 10-10h112q10 0 10 10"/>
+
+  <!-- the student -->
+  <g class="sc-student">
+    <g class="hair hair-long"><path d="M440 196q-6-58 45-60q52 2 47 64l6 60q-53-14-104 0Z"/></g>
+    <g class="hair hair-wrap"><path d="M436 206q-8-76 49-78q58 2 50 78q4 34-22 48h-56q-26-14-21-48Z"/><circle cx="532" cy="160" r="12"/></g>
+    <path class="sc-neck skin" d="M472 226h26v34h-26Z"/>
+    <path class="sc-torso" d="M404 344q2-70 46-84l20-6h30l20 6q44 14 46 84Z"/>
+    <path class="sc-collar" d="M466 256l19 18 19-18"/>
+    <g class="ears"><ellipse class="skin" cx="449" cy="196" rx="7" ry="10"/><ellipse class="skin" cx="521" cy="196" rx="7" ry="10"/></g>
+    <ellipse class="skin sc-face" cx="485" cy="192" rx="36" ry="41"/>
+    <g class="hair hair-short"><path d="M446 192q-8-54 39-56q48 0 41 58q-7-30-40-36q-31 4-40 34Z"/></g>
+    <g class="hair hair-long"><path d="M446 196q-6-56 39-58q48 0 41 58q-12-30-42-34q-28 6-38 34Z"/></g>
+    <g class="hair hair-curly"><circle cx="454" cy="168" r="17"/><circle cx="470" cy="152" r="19"/><circle cx="494" cy="148" r="19"/><circle cx="516" cy="160" r="17"/><circle cx="526" cy="182" r="12"/><circle cx="445" cy="186" r="11"/></g>
+    <g class="hair hair-wrap"><path d="M449 170q36-26 72 0q-6-18-36-20q-30 2-36 20Z"/></g>
+    <g class="sc-face-features">
+      <path class="sc-brow" d="M466 178q6-4 12 0M494 178q6-4 12 0"/>
+      <ellipse class="sc-eye" cx="473" cy="191" rx="3.6" ry="4.4"/><ellipse class="sc-eye" cx="500" cy="191" rx="3.6" ry="4.4"/>
+      <circle class="sc-cheek" cx="463" cy="206" r="5"/><circle class="sc-cheek" cx="510" cy="206" r="5"/>
+      <path class="sc-mouth" d="M478 211q8 6 16 0"/>
+    </g>
+    <path class="sc-sleeve" d="M412 300q-6 34 18 44h30q-14-20-22-48Z"/>
+    <path class="sc-sleeve" d="M556 296q10 30-8 48h-34q16-16 20-46Z"/>
+  </g>
+
+  <!-- Nuru, sitting on a cushion in the next seat -->
+  <path class="sc-cushion" d="M650 308q70-16 140 0v32H650Z"/>
+  <g class="sc-nuru" transform="translate(660 150) scale(1.0)">{% include 'partials/nuru.html' with nuru_id=scene_id|add:'N' nuru_w='120' nuru_h='160' %}</g>
+
+  <!-- the shared desk -->
+  <path class="sc-desk-top" d="M260 330h680l34 26H226Z"/>
+  <path class="sc-desk-front" d="M226 356h748v120H226Z"/>
+  <path class="sc-desk-line" d="M240 380h720"/>
+  <!-- the shared notebook between them -->
+  <g class="sc-notebook">
+    <path class="sc-page" d="M520 324q40-10 78 2v24q-38-10-78-2Z"/><path class="sc-page" d="M598 326q40-12 80-2v24q-40-10-80 2Z"/>
+    <path class="sc-page-lines" d="M532 332q28-6 56 0M532 339q28-6 56 0M608 332q28-6 58 0M608 339q28-6 58 0"/>
+  </g>
+  <g class="sc-hands">
+    <ellipse class="skin" cx="472" cy="340" rx="15" ry="9"/>
+    <g class="sc-pen-hand"><ellipse class="skin" cx="530" cy="338" rx="14" ry="9"/><path class="sc-pen" d="M528 340l26-18"/></g>
+  </g>
+
+  <!-- desk keepsakes -->
+  <g class="deco deco-reading_lamp" transform="translate(880 270) scale(1.15)"><path d="M14 50h28l-4-6H18Z" fill="#3e3a52"/><path d="M28 44l-4-24 18-12" fill="none" stroke="#3e3a52" stroke-width="3"/><path d="M38 6l18 6-10 18-20-8Z" fill="#3e3a52"/><circle class="sc-bulb" cx="40" cy="26" r="10" fill="#ffd98e" opacity=".5"/></g>
+  <g class="deco deco-succulent" transform="translate(290 280)"><path d="M18 40h24l-3 14H21Z" fill="#c6714f"/><path d="M30 40q-12-4-12-18q10 2 12 18Zm0 0q12-4 14-20q-12 4-14 20Zm0 0q0-14 2-22q6 10-2 22Z" fill="#7f9e78"/></g>
+  <g class="deco deco-tea_set" transform="translate(796 290) scale(.8)"><path d="M8 50q-4-22 16-22t16 22Z" fill="#A8BFA3"/><path d="M10 38q-8-2-8-10" stroke="#7f9e78" stroke-width="4" fill="none"/><path d="M44 40h12q0 10-6 10t-6-10Z" fill="#fffaf0" stroke="#c7b59a"/></g>
+  <g class="deco deco-desk_globe" transform="translate(350 272) scale(.95)"><circle cx="30" cy="26" r="18" fill="#9cc0cf" stroke="#6d4a33" stroke-width="1.5"/><path d="M18 20q8-6 14 2t10-2M22 36q6 2 12-4" fill="none" stroke="#6f8f68" stroke-width="4" stroke-linecap="round"/><path d="M18 54h24M30 54v-10" stroke="#6d4a33" stroke-width="4" stroke-linecap="round"/></g>
+  <g class="deco deco-index_cards" transform="translate(708 300)"><rect x="4" y="16" width="40" height="26" rx="3" fill="#E7B56B" transform="rotate(-6 24 29)"/><rect x="8" y="12" width="40" height="26" rx="3" fill="#B8A4D4" transform="rotate(4 28 25)"/><rect x="6" y="10" width="40" height="26" rx="3" fill="#FAF7F0" stroke="#c7b59a"/><path d="M12 18h28M12 24h22M12 30h18" stroke="#57438A" stroke-width="1.6" opacity=".6"/></g>
+
+  <rect class="sc-lamp-glow" x="-300" y="-200" width="1800" height="900" fill="url(#scLamp{{ scene_id }})"/>
+  <rect class="sc-veil" x="-300" y="-200" width="1800" height="900"/>
+</svg>

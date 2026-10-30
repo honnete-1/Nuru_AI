@@ -1,0 +1,54 @@
+{% extends 'base.html' %}{% load static %}
+{% block title %}Today · Calm Scholar{% endblock %}
+{% block bodyattrs %} data-theme="day" class="app-body"{% endblock %}
+{% block body %}
+<a class="skip-link" href="#panel">Skip to main content</a>
+<div class="app" id="app">
+  <header class="topbar">
+    <a class="brand" href="#/home" aria-label="Calm Scholar, back to Today">{% include 'partials/mark.html' %}<span class="word">calm <b>scholar</b></span></a>
+    <nav class="mainnav" id="mainnav" aria-label="Main">
+      <button data-nav="home" title="Today"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.4 1.4M16.6 16.6 18 18M6 18l1.4-1.4M16.6 7.4 18 6"/><circle cx="12" cy="12" r="4"/></svg><span class="lbl">Today</span></button>
+      <button data-nav="study" title="Study Together"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19h18M5 19V9h6v10M13 19v-6h6v6"/><circle cx="8" cy="5.5" r="2"/><circle cx="16" cy="9.5" r="2"/></svg><span class="lbl"><span class="lbl-long">Study Together</span><span class="lbl-short">Study</span></span></button>
+      <button data-nav="plan" title="Assignments &amp; Study Plan"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v17H5Z"/><path d="M9 9l1.5 1.5L13 8M9 15h6"/></svg><span class="lbl"><span class="lbl-long">Assignments &amp; Study Plan</span><span class="lbl-short">Assignments</span></span></button>
+      <button data-nav="library" title="My Notes &amp; Courses"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M9 7h6M9 11h4"/></svg><span class="lbl"><span class="lbl-long">My Notes &amp; Courses</span><span class="lbl-short">Notes</span></span></button>
+      <button data-nav="companion" class="nav-secondary" title="Talk to Nuru"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4Z"/></svg><span class="lbl" id="nav-companion">Talk to Nuru</span></button>
+      <button data-nav="journal" class="nav-secondary" title="Grades &amp; Check-ins"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h11a2 2 0 0 1 2 2v16H7a2 2 0 0 1-2-2V4Z"/><path d="M9 8h6M9 12h6"/></svg><span class="lbl"><span class="lbl-long">Grades &amp; Check-ins</span><span class="lbl-short">Grades</span></span></button>
+      <button data-nav="progress" class="nav-secondary" title="My Progress"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="lbl"><span class="lbl-long">My Progress</span><span class="lbl-short">Progress</span></span></button>
+      <button class="nav-more" id="nav-more" aria-haspopup="true" aria-expanded="false" aria-controls="more-sheet"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="5" cy="12" r="1.5"/><circle cx="12" cy="12" r="1.5"/><circle cx="19" cy="12" r="1.5"/></svg><span class="lbl">More</span></button>
+    </nav>
+    <div class="right">
+      <div id="focus-pill-slot"></div>
+      <span class="ai-badge demo" id="ai-badge" title="">Demo mode: scripted responses</span>
+      <div class="user-menu">
+        <button class="avatar" id="user-btn" aria-haspopup="menu" aria-expanded="false" aria-controls="user-menu" aria-label="Account menu">{{ profile.display_name|slice:":1"|upper }}</button>
+        <div class="menu" id="user-menu" role="menu" hidden>
+          <button role="menuitem" data-nav="settings">Settings &amp; privacy</button>
+          <button role="menuitem" data-nav="space">Our study space</button>
+          <a role="menuitem" href="/api/export/">Export my data (JSON)</a>
+          <form method="post" action="/accounts/logout/">{% csrf_token %}<button role="menuitem">Log out</button></form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="more-sheet" id="more-sheet" hidden>
+    <p class="tiny muted" style="margin:0 4px 6px">More places</p>
+    <button data-nav="companion"><span id="more-companion">Talk to Nuru</span></button>
+    <button data-nav="revise">Revise with Nuru</button>
+    <button data-nav="journal">Grades &amp; Check-ins</button>
+    <button data-nav="progress">My Progress</button>
+    <button data-nav="space">Our study space</button>
+    <button data-nav="settings">Settings &amp; privacy</button>
+  </div>
+  <div id="banners"></div>
+  <main class="panel" id="panel" tabindex="-1" aria-label="Main content">
+    <div class="panel-body"><div class="empty" style="margin-top:40px"><p>Getting your desk ready…</p></div></div>
+  </main>
+</div>
+<div class="nuru-bubble" id="nuru-bubble" role="status" aria-live="polite" hidden></div>
+<dialog id="dialog" aria-labelledby="dialog-title"><div id="dialog-inner"></div></dialog>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<template id="tpl-nuru">{% include 'partials/nuru.html' with nuru_id='Tpl' nuru_label='' %}</template>
+<template id="tpl-scene">{% include 'partials/scene.html' with scene_id='SceneTpl' %}</template>
+<noscript><div class="notice" style="margin:20px">Calm Scholar needs JavaScript. Your data is safe; please enable JavaScript to continue.</div></noscript>
+<script type="module" src="{% static 'js/app/main.js' %}"></script>
+{% endblock %}
