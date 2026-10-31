@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["python311"]
+
+[phases.install]
+cmds = ["python -m pip install -r calm-scholar/requirements.txt"]
+
+[start]
+cmd = "cd calm-scholar && python manage.py migrate && gunicorn config.wsgi"
